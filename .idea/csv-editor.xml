@@ -31,6 +31,41 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\experiments\logs\run_20250619_180310\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250619_181707\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250619_184412\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250619_184412\metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250619_184412\pid_params.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\experiments\logs\run_20250619_185445\episode_rewards.csv">
           <value>
             <Attribute>
@@ -46,6 +81,20 @@
           </value>
         </entry>
         <entry key="\experiments\logs\run_20250619_185445\pid_params.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250619_192348\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250619_192348\metrics.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -74,6 +123,90 @@
           </value>
         </entry>
         <entry key="\experiments\logs\run_20250620_161955\trajectories.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250620_170623\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250620_170623\trajectories.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250620_173828\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250620_173828\trajectories.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250620_205715\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250620_210016\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs\run_20250620_210610\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs_baseline\run_20250620_170932\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs_baseline\run_20250620_174044\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs_baseline\run_20250620_205716\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs_baseline\run_20250620_210017\episode_rewards.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\experiments\logs_baseline\run_20250620_210610\episode_rewards.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
