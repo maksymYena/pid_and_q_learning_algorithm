@@ -63,37 +63,40 @@ adaptive:
 
 simulation:
   dt: 0.1
-  max_episode_steps: 200
-  done_thresh: 1
+  max_episode_steps: 100
+  done_thresh: 0.7
   random_starts: true
   start_range:
     low: [ 0.0, 0.0 ]
-    high: [ 10.0, 10.0 ]
+    high: [ 5.0, 5.0 ]
   randomize_env: true
 
 reward:
-  w_delta: 100.0
-  w_step: 1.0
-  r_success: 200.0
+  w_delta: 400.0
+  w_step: 0.2
+  r_success: 500.0
+  collision_penalty: -100.0
+  stagnation_penalty: -1.0
 
 training:
-  timesteps: 100000
+  timesteps: 200_000
 
 target_coord: [ 0.0, 0.0 ]
 init_positions:
-  - [1.0, 2.0]
-  - [2.0, 3.0]
-  - [3.0, 4.0]
-  - [4.0, 5.0]
-  - [5.0, 6.0]
-  - [6.0, 7.0]
-  - [7.0, 8.0]
-  - [8.0, 9.0]
-  - [9.0, 1.0]
-  - [2.0, 8.0]
-  - [3.5, 1.2]
-  - [7.8, 9.6]
-  - [8.2, 3.1]
-  - [1.1, 7.9]
-  - [5.9, 2.2]
+  - [ 3.0, 3.0 ]
+  - [ 1.0, 2.0 ]
+  - [ 2.0, 3.0 ]
+  - [ 3.0, 4.0 ]
+  - [ 4.0, 5.0 ]
+  - [ 5.0, 6.0 ]
+  - [ 6.0, 7.0 ]
+  - [ 7.0, 8.0 ]
+  - [ 8.0, 9.0 ]
+  - [ 9.0, 1.0 ]
+  - [ 2.0, 8.0 ]
+  - [ 3.5, 1.2 ]
+  - [ 7.8, 9.6 ]
+  - [ 8.2, 3.1 ]
+  - [ 1.1, 7.9 ]
+  - [ 5.9, 2.2 ]
 
