@@ -1,0 +1,22 @@
+adaptive:
+  pid:
+    Kp: 1.0
+    Ki: 0.1
+    Kd: 0.01
+  actions:
+  - - Kp
+    - 0.05
+  - - Kp
+    - -0.05
+  - - Ki
+    - 0.01
+  - - Ki
+    - -0.01
+  - - Kd
+    - 0.005
+  - - Kd
+    - -0.005
+  alpha: 0.1
+  gamma: 0.9
+  epsilon: 0.2
+  tb_log: ./tensorboard_logs

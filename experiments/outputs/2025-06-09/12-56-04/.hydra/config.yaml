@@ -1,0 +1,60 @@
+planner:
+  lambda: 0.5
+  mu: 0.3
+graph:
+  A:
+  - - B
+    - 5.0
+  - - C
+    - 3.0
+  B:
+  - - A
+    - 5.0
+  - - D
+    - 2.0
+  C:
+  - - A
+    - 3.0
+  - - D
+    - 4.5
+  D:
+  - - B
+    - 2.0
+  - - C
+    - 4.5
+traffic:
+  A-B: 0.2
+  A-C: 0.5
+  B-D: 0.1
+  C-D: 0.3
+weather:
+  A-B: 0.0
+  A-C: 0.1
+  B-D: 0.2
+  C-D: 0.0
+swarm:
+  eta: 0.1
+adaptive:
+  pid:
+    Kp: 1.0
+    Ki: 0.1
+    Kd: 0.01
+  actions:
+  - - Kp
+    - 0.05
+  - - Kp
+    - -0.05
+  - - Ki
+    - 0.01
+  - - Ki
+    - -0.01
+  - - Kd
+    - 0.005
+  - - Kd
+    - -0.005
+  alpha: 0.1
+  gamma: 0.9
+  epsilon: 0.2
+simulation:
+  dt: 0.1
+  steps: 100
