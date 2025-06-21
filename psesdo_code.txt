@@ -1,0 +1,10 @@
+For each episode:
+    Reset environment, initialize agents
+    For each step in episode:
+        For each agent:
+            1. Observe state (positions, velocities, PID state)
+            2. Compute action (RL policy + Swarm + PID)
+            3. Apply action, update positions
+        Calculate reward (MAE, step penalty, success/collision bonus)
+        Update PPO agent (every N steps)
+    End episode: log rewards, MAE, success

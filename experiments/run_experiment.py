@@ -54,54 +54,55 @@ def main(cfg: DictConfig):
     rl_successes, pid_successes = 0, 0
     rl_steps, pid_steps = [], []
 
-    for _ in range(num_episodes):
+    # === Оцінка RL ===
+    for ep in range(num_episodes):
         obs, _ = test_env.reset()
         done, cum_reward = False, 0
         episode_mae = []
         step = 0
+        success = False
         while not done:
             action = agent.predict(obs, deterministic=True)[0]
             obs, reward, terminated, truncated, info = test_env.step(action)
             cum_reward += reward
-            done = terminated or truncated
-
-            # Для MAE
             errors = info.get("errors", np.array([np.nan]))
             mae = float(np.mean(errors))
             episode_mae.append(mae)
+            if terminated and mae < test_env.unwrapped.done_thresh:
+                success = True
+            done = terminated or truncated
             step += 1
-
         rl_rewards.append(cum_reward)
         rl_mae_all.append(np.mean(episode_mae))
         rl_steps.append(step)
-        if mae < test_env.unwrapped.done_thresh:
+        if success:
             rl_successes += 1
 
-    pd.DataFrame(episode_rewards).to_csv("episode_rewards.csv", index=False)
-    pd.DataFrame(all_metrics).to_csv("metrics.csv", index=False)
-    pd.DataFrame(all_pid_params).to_csv("pid_params.csv", index=False)
-
     # === Оцінка Baseline ===
-    target_coord = test_env.unwrapped.target if hasattr(test_env.unwrapped, "target") else np.array([0.0, 0.0])
-    for _ in range(num_episodes):
+    target_coord = getattr(test_env.unwrapped, "target", None)
+    if target_coord is None:
+        target_coord = np.array(cfg["target_coord"], dtype=float)
+    for ep in range(num_episodes):
         obs, _ = test_env.reset()
         done, cum_reward = False, 0
         episode_mae = []
+        step = 0
+        success = False
         while not done:
             action = static_pid_policy(obs, target_coord)
             obs, reward, terminated, truncated, info = test_env.step(action)
             cum_reward += reward
-            done = terminated or truncated
-
             errors = info.get("errors", np.array([np.nan]))
             mae = float(np.mean(errors))
             episode_mae.append(mae)
+            if terminated and mae < test_env.unwrapped.done_thresh:
+                success = True
+            done = terminated or truncated
             step += 1
-
         pid_rewards.append(cum_reward)
         pid_mae_all.append(np.mean(episode_mae))
         pid_steps.append(step)
-        if mae < test_env.unwrapped.done_thresh:
+        if success:
             pid_successes += 1
 
     print("Mean RL reward:", np.mean(rl_rewards))
@@ -120,7 +121,7 @@ def main(cfg: DictConfig):
     plt.tight_layout()
     plt.savefig("compare_rewards.png")
     plt.show()
-    print("Графік збережено: compare_rewards.png")
+    #print("Графік збережено: compare_rewards.png")
 
     print("Mean RL reward:", np.mean(rl_rewards))
     print("Mean PID reward:", np.mean(pid_rewards))
