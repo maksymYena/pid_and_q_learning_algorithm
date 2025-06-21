@@ -26,11 +26,20 @@ class AHTMEnv(gym.Env):
         self.max_steps = config["simulation"].get("max_episode_steps", 100)
         self.done_thresh = config["simulation"].get("done_thresh", 0.7)
         self._step_count = 0
-        self.obstacles = []
-        self.turbulence_sigma = 0.01  # трохи шуму – для новизни
+        self.obstacles = [
+            (1.5, 2.5, 1.5, 2.5),
+            (2.0, 2.5, 0.0, 1.0),
+        ]
+        self.turbulence_sigma = 0.08  # трохи шуму – для новизни
         obs_dim = self.init_positions.size + 3  # dummy PID
         self.observation_space = spaces.Box(-np.inf, np.inf, shape=(obs_dim,), dtype=np.float32)
         self.action_space = spaces.Box(low=-1, high=1, shape=(3,), dtype=np.float32)
+
+    def _is_in_obstacle(self, pos):
+        for (xmin, xmax, ymin, ymax) in self.obstacles:
+            if xmin <= pos[0] <= xmax and ymin <= pos[1] <= ymax:
+                return True
+        return False
 
     def reset(self, *, seed=None, options=None):
         super().reset(seed=seed)
@@ -51,7 +60,7 @@ class AHTMEnv(gym.Env):
         reward = -mean_err + 5 * delta
         if mean_err < self.done_thresh:
             reward += 1000
-        reward -= 1
+        reward -= 2
         if collision:
             reward -= 100
         return reward
@@ -66,17 +75,12 @@ class AHTMEnv(gym.Env):
         self.positions += action[:2] * self.dt + noise
         errors = np.linalg.norm(self.positions - self.target, axis=1)
         mean_err = float(np.mean(errors))
-        delta = self.prev_error - mean_err
-        self.prev_error = mean_err
-
-        collision = False
-
-        reward = self._compute_reward(mean_err, delta, self._step_count, collision)
+        collision = self._is_in_obstacle(self.positions[0])
+        reward = self._compute_reward(mean_err, 0, self._step_count, collision=collision)
         terminated = mean_err < self.done_thresh or collision
-        truncated = self._step_count >= self.max_steps
+        truncated = self._step_count >= self.max_steps and not terminated
         obs = self._get_obs()
         info = {"errors": errors, "collision": collision}
-
         print(
             f"Step {self._step_count}, mean_err={mean_err:.2f}, reward={reward:.2f}, pos={self.positions[0]}, terminated={terminated}")
 
